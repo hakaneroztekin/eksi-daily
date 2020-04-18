@@ -15,7 +15,7 @@ const styles = theme => ({
     },
     gridList: {
         flexWrap: 'nowrap',
-        marginBottom: 40
+        marginBottom: 20
     },
     tileBar: {
         height: 'auto'
@@ -40,10 +40,12 @@ class MainContent extends Component {
     createTopicsComponent = () => {
         let topicsComponent = [];
         let topics = this.state.topics;
+
         if (topics == null) {
             topicsComponent.push(<Grid
                 item
                 xs={11}
+                key="empty"
             >
                 Veriler toplanıyor...
             </Grid>);
@@ -58,15 +60,11 @@ class MainContent extends Component {
                     xs={11}
                     key={i}
                 >
-                    <Topic/>
-                    {/*    name={articles[i]['name']}*/}
-                    {/*    logo={articles[i]['logo']}*/}
-                    {/*    link={articles[i]['link']}*/}
-                    {/*    summary={articles[i]['summary']}*/}
-                    {/*    publishDate={articles[i]['publishDate']}*/}
-                    {/*    accessTypeVal={articles[i]['accessTypeVal']}*/}
-                    {/*    categoryVal={articles[i]['categoryVal']}*/}
-                    {/*/>*/}
+                    <Topic
+                        title={JSON.parse(topics[i]).title}
+                        messageCount={JSON.parse(topics[i]).messageCount}
+                        link={JSON.parse(topics[i]).link}
+                    />
                 </Grid>);
             topicsComponent.push(topic);
         }
@@ -82,8 +80,9 @@ class MainContent extends Component {
                 <div className={classes.root}>
                     <Grid
                         container
-                        alignItems="center"
-                        justify="center"
+                        direction="row"
+                        justify="space-between"
+                        alignItems="baseline"
                         spacing={1}
                     >
                         {this.createTopicsComponent()}

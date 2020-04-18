@@ -28,12 +28,14 @@ function scrapeAllTopics(callback) {
 }
 
 function processList(list, messageLimit) {
+    // remove possible duplicates
+    list = Array.from(new Set(list));
+
+    // sort by entry count
     list.sort((topic1, topic2) => JSON.parse(topic2).messageCount - JSON.parse(topic1).messageCount);
 
-    list.forEach((topic) => {
-        if (JSON.parse(topic).messageCount < messageLimit) {
-            list.splice(list.indexOf(topic), 1);
-        }
+    list = list.filter(function (topic) {
+        return JSON.parse(topic).messageCount > messageLimit
     });
 
     return list;
