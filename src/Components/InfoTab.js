@@ -11,21 +11,8 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import {ListItemAvatar} from "@material-ui/core";
-import Avatar from "@material-ui/core/Avatar";
 
 import MenuBookIcon from '@material-ui/icons/MenuBook';
-import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import AppleIcon from '@material-ui/icons/Apple';
-import AssignmentIcon from '@material-ui/icons/Assignment';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import NewReleasesIcon from '@material-ui/icons/NewReleases';
-import ReportIcon from '@material-ui/icons/Report';
-import LiveHelpIcon from '@material-ui/icons/LiveHelp';
-
-import TouchAppIcon from "@material-ui/core/SvgIcon/SvgIcon";
-import Button from "@material-ui/core/Button";
-import BlackButtonBar from "./button/BlackButtonBar";
 
 const logo = require('../Images/logo-small.png');
 
@@ -69,12 +56,6 @@ const useStyles = makeStyles(theme => ({
     panel: {
         paddingLeft: 25,
         padding: 20,
-    },
-    rightPanelPart: {
-        position: 'absolute',
-        right: 50,
-        marginTop: -15,
-        whiteSpace: 'nowrap'
     },
     showOnSmallScreens: {
         display: 'none',
@@ -129,8 +110,7 @@ export default function ScrollableTabsButtonForce() {
                         icon={<img alt="Logo" width={50} src={logo}/>}
                         {...a11yProps(0)}
                     />
-                    <Tab style={{textTransform: 'capitalize'}} label="Hakkında" {...a11yProps(1)}/>
-                    {/*<Tab label={<BlackButtonBar/>}*/}
+                    <Tab label="hakkında" {...a11yProps(1)}/>
                 </Tabs>
             </AppBar>
 
@@ -150,9 +130,6 @@ export default function ScrollableTabsButtonForce() {
                             </List>
                         </div>
                     </Grid>
-                </TabPanel>
-                <TabPanel className={classes.panel} value={value} index={2}>
-                   <BlackButtonBar/>
                 </TabPanel>
             </Grid>
         </div>

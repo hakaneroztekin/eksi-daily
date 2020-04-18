@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import withStyles from '@material-ui/styles/withStyles';
 import CssBaseline from "@material-ui/core/CssBaseline";
-import GridList from "@material-ui/core/GridList";
 import Grid from "@material-ui/core/Grid";
+import Topic from "./Topic";
+import {scrape} from "../Service/ScraperService";
 
 const styles = theme => ({
     root: {
@@ -30,7 +31,7 @@ class MainContent extends Component {
     }
 
     componentDidMount() {
-       // load topics
+        scrape(100);
     }
 
     createTopicsComponent = () => {
@@ -38,26 +39,26 @@ class MainContent extends Component {
         //let articles = this.state.articles;
         //if (articles != null) {
         //    for (let i = 0; i < articles.length; i++) {
-                let topic = [];
-                topic.push(
-                    <Grid
-                        item
-                        xs={11}
-        //                key={i}
-                        key={1}
-                    >
-                        text
-                        {/*<Article*/}
-                        {/*    name={articles[i]['name']}*/}
-                        {/*    logo={articles[i]['logo']}*/}
-                        {/*    link={articles[i]['link']}*/}
-                        {/*    summary={articles[i]['summary']}*/}
-                        {/*    publishDate={articles[i]['publishDate']}*/}
-                        {/*    accessTypeVal={articles[i]['accessTypeVal']}*/}
-                        {/*    categoryVal={articles[i]['categoryVal']}*/}
-                        {/*/>*/}
-                    </Grid>);
-                topicsComponent.push(topic);
+        let topic = [];
+        topic.push(
+            <Grid
+                item
+                xs={11}
+                //                key={i}
+                key={1}
+            >
+                text
+                <Topic/>
+                {/*    name={articles[i]['name']}*/}
+                {/*    logo={articles[i]['logo']}*/}
+                {/*    link={articles[i]['link']}*/}
+                {/*    summary={articles[i]['summary']}*/}
+                {/*    publishDate={articles[i]['publishDate']}*/}
+                {/*    accessTypeVal={articles[i]['accessTypeVal']}*/}
+                {/*    categoryVal={articles[i]['categoryVal']}*/}
+                {/*/>*/}
+            </Grid>);
+        topicsComponent.push(topic);
         //    }
         //}
         return topicsComponent;
