@@ -44,7 +44,7 @@ class MainContent extends Component {
         if (topics == null) {
             topicsComponent.push(<Grid
                 item
-                xs={11}
+                xs={6}
                 key="empty"
             >
                 Veriler toplanıyor...
@@ -57,7 +57,7 @@ class MainContent extends Component {
             topic.push(
                 <Grid
                     item
-                    xs={11}
+                    xs={6}
                     key={i}
                 >
                     <Topic

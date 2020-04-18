@@ -2,15 +2,16 @@ import React, {Component} from 'react';
 import withStyles from '@material-ui/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import BlackButtonBar from "./button/BlackButtonBar";
+import Avatar from "@material-ui/core/Avatar";
 // import ButtonBar from "../button/ButtonBar";
 
 const styles = theme => ({
     paper: {
-        padding: theme.spacing(3),
         textAlign: 'left',
         color: theme.palette.text.secondary,
-        borderRadius: 12
+        borderRadius: 12,
+        minHeight: 50,
+        paddingTop: 10
     },
     itemContainer: {
         display: 'flex',
@@ -20,6 +21,24 @@ const styles = theme => ({
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center'
+        }
+    },
+    avatar: {
+        margin: 1,
+        width: '100%',
+        height: '100%',
+        borderRadius: 10,
+        backgroundColor: theme.palette.grey['200'],
+        color: theme.palette.text.primary,
+    },
+    avatarImg: {
+        maxWidth: '100%',
+        height: 'auto'
+    },
+    avatarContainer: {
+        [theme.breakpoints.down('sm')]: {
+            marginLeft: 0,
+            marginBottom: theme.spacing(4)
         }
     },
     baseline: {
@@ -44,25 +63,11 @@ const styles = theme => ({
             marginLeft: 0
         }
     },
-    inlineRight: {
-        width: '10%',
-        textAlign: 'right',
-        marginLeft: 50,
-        alignContent: 'right',
-        [theme.breakpoints.down('sm')]: {
-            width: '100%',
-            margin: 0,
-            textAlign: 'center'
-        }
-    },
     backButton: {
         marginRight: theme.spacing(2)
     },
     secondary: {
         background: theme.palette.secondary['100']
-    },
-    tag: {
-        margin: theme.spacing(0.25)
     }
 });
 
@@ -73,35 +78,36 @@ class CardItem extends Component {
         const {classes} = this.props;
 
         return (
-            <div className={classes.root}>
-                <Paper className={classes.paper} variant="outlined"
+            <Paper className={classes.paper} variant="outlined"
+            >
+                <div className={classes.itemContainer}
+                     onClick={() => window.open(this.props.link)}
                 >
-                    <div className={classes.itemContainer}
-                         onClick={() => window.open(this.props.link)}
-                    >
-                        <div>
-                            <div>
-                                <Typography variant="h6" gutterBottom>
-                                    {this.props.messageCount}
-                                    <br/> entry
-                                </Typography>
-                            </div>
-                        </div>
-                        <div className={classes.baseline}>
-                            <div className={classes.inline}>
-                                <Typography variant="h5" gutterBottom>
-                                    {this.props.title}
-                                </Typography>
-                            </div>
-                        </div>
-                        <div>
-                            <div className={classes.inlineRight}>
-                                <BlackButtonBar text=">"/>
-                            </div>
+
+                    <div className={classes.avatarContainer}>
+                        <Avatar className={classes.avatar}>
+                            <img
+                                className={classes.avatarImg}
+                                alt="Logo"
+                                src='/src/Images/logo-small.png'
+                            />
+                        </Avatar>
+                    </div>
+
+                    <div className={classes.baseline}>
+                        <div className={classes.inline}>
+                            <Typography variant="body1" gutterBottom>
+                                {this.props.title}
+                            </Typography>
                         </div>
                     </div>
-                </Paper>
-            </div>
+                    <div>
+                        <div className={classes.inlineRight}>
+                            {this.props.messageCount} entry
+                        </div>
+                    </div>
+                </div>
+            </Paper>
         )
     }
 }

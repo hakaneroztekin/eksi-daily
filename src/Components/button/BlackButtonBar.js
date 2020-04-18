@@ -1,16 +1,12 @@
-import React from 'react';
-import {Component} from "react";
+import React, {Component} from 'react';
 import withStyles from '@material-ui/styles/withStyles';
 import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
     primary: {
-        width: 90,
+        width: 10,
         fontWeight: 'bold',
     },
-    spaceTop: {
-        marginTop: 19
-    }
 });
 
 class ButtonBar extends Component {
@@ -19,12 +15,12 @@ class ButtonBar extends Component {
         const {classes} = this.props;
 
         return (
-            <div className={classes.spaceTop}>
+            <div>
                 <Button
                     variant="outlined"
                     color="secondary"
                     className={classes.primary}
-                    style={{textTransform : 'capitalize'}}
+                    style={{textTransform: 'capitalize', borderRadius: 100}}
                     onClick={() => this.props.redirect != null && this.props.redirect({})}
                 >
                     {this.props.text}

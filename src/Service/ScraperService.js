@@ -1,8 +1,8 @@
 const requestPromise = require('request-promise');
 const cheerio = require('cheerio');
 
-const BASE_URL = "https://eksisozluk.com";
-const HOT_TOPICS_URL = "https://eksisozluk.com/basliklar/gundem";
+const BASE_URL = "https://cors-anywhere.herokuapp.com/https://eksisozluk.com";
+const HOT_TOPICS_URL = "https://cors-anywhere.herokuapp.com/https://eksisozluk.com/basliklar/gundem";
 
 export function scrape(messageLimit, callback) {
     scrapeAllTopics(allTopics => {
@@ -15,6 +15,9 @@ function scrapeAllTopics(callback) {
         url: HOT_TOPICS_URL,
         headers: {
             'User-Agent': 'Request-Promise',
+            "Referer": "https://eksisozluk.com",
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json"
         }
     })
         .then(function (response) {
