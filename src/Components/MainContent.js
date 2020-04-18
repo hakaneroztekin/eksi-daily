@@ -31,7 +31,10 @@ class MainContent extends Component {
     }
 
     componentDidMount() {
-        scrape(100);
+        scrape(100, topics => {
+            console.log("Scrape completed with " + topics.length + " total topics.");
+            this.setState({topics: topics})
+        });
     }
 
     createTopicsComponent = () => {

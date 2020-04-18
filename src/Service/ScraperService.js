@@ -6,7 +6,7 @@ const HOT_TOPICS_URL = "https://eksisozluk.com/basliklar/gundem";
 
 export function scrape(messageLimit, callback) {
     scrapeAllTopics(allTopics => {
-        processList(allTopics, messageLimit)
+        callback(processList(allTopics, messageLimit));
     });
 }
 
@@ -34,10 +34,9 @@ function processList(list, messageLimit) {
         if (JSON.parse(topic).messageCount < messageLimit) {
             list.splice(list.indexOf(topic), 1);
         }
-        console.log(JSON.parse(topic).messageCount)
     });
 
-    console.log(list.length);
+    return list;
 }
 
 function parseLeftFrame(html) {
@@ -51,6 +50,16 @@ function parseLeftFrame(html) {
         // message count
         let messageCount = $("small", $(this)).html();
 
+        // skip ad related topics
+        if ($(this).find('.ad-banner').length) {
+            return;
+        }
+
+        // Remove non-topic elements
+        if (messageCount == null) {
+            return;
+        }
+
         // clear message count from title
         if ($(this).find('small').length) {
             $(this).find('small').replaceWith();
@@ -61,6 +70,7 @@ function parseLeftFrame(html) {
             messageCount: messageCount,
             link: BASE_URL + $('a', row).attr('href')
         });
+
         topicList.push(topic);
     });
     console.log("➡ Parsed " + topicList.length + " topics");
