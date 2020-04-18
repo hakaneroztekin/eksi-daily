@@ -39,31 +39,37 @@ class MainContent extends Component {
 
     createTopicsComponent = () => {
         let topicsComponent = [];
-        //let articles = this.state.articles;
-        //if (articles != null) {
-        //    for (let i = 0; i < articles.length; i++) {
-        let topic = [];
-        topic.push(
-            <Grid
+        let topics = this.state.topics;
+        if (topics == null) {
+            topicsComponent.push(<Grid
                 item
                 xs={11}
-                //                key={i}
-                key={1}
             >
-                text
-                <Topic/>
-                {/*    name={articles[i]['name']}*/}
-                {/*    logo={articles[i]['logo']}*/}
-                {/*    link={articles[i]['link']}*/}
-                {/*    summary={articles[i]['summary']}*/}
-                {/*    publishDate={articles[i]['publishDate']}*/}
-                {/*    accessTypeVal={articles[i]['accessTypeVal']}*/}
-                {/*    categoryVal={articles[i]['categoryVal']}*/}
-                {/*/>*/}
+                Veriler toplanıyor...
             </Grid>);
-        topicsComponent.push(topic);
-        //    }
-        //}
+            return topicsComponent;
+        }
+
+        for (let i = 0; i < topics.length; i++) {
+            let topic = [];
+            topic.push(
+                <Grid
+                    item
+                    xs={11}
+                    key={i}
+                >
+                    <Topic/>
+                    {/*    name={articles[i]['name']}*/}
+                    {/*    logo={articles[i]['logo']}*/}
+                    {/*    link={articles[i]['link']}*/}
+                    {/*    summary={articles[i]['summary']}*/}
+                    {/*    publishDate={articles[i]['publishDate']}*/}
+                    {/*    accessTypeVal={articles[i]['accessTypeVal']}*/}
+                    {/*    categoryVal={articles[i]['categoryVal']}*/}
+                    {/*/>*/}
+                </Grid>);
+            topicsComponent.push(topic);
+        }
         return topicsComponent;
     };
 
