@@ -110,7 +110,7 @@ export default function ScrollableTabsButtonForce() {
                         icon={<img alt="Logo" width={50} src={logo}/>}
                         {...a11yProps(0)}
                     />
-                    <Tab label="hakkında" {...a11yProps(1)}/>
+                    <Tab style={{textTransform: 'lowercase'}} label="hakkında" {...a11yProps(1)}/>
                 </Tabs>
             </AppBar>
 

@@ -12,7 +12,8 @@
     "cheerio": "^1.0.0-rc.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "xmlhttprequest": "^1.8.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -34,5 +35,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "jsonframe-cheerio": "^3.0.1",
+    "request-promise": "^4.2.5"
   }
 }
