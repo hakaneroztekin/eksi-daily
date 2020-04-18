@@ -124,7 +124,7 @@ export default function ScrollableTabsButtonForce() {
                                         <MenuBookIcon/>
                                     </ListItemIcon>
                                     <ListItemText
-                                        primary="Text"
+                                        primary="Ekşisözlük'teki popüler yazıları tek tıkla listele"
                                     />
                                 </ListItem>
                             </List>
