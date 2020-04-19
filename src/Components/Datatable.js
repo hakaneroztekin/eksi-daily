@@ -41,8 +41,6 @@ class Datatable extends Component {
 
         return (
             <List className={classes.root}>
-                {console.log("this.state.list")}
-                {console.log(this.state.list)}
                 {this.props.list.map(topic => (
                     <Link key={topic.index} href={topic.link} color="secondary" style={{textDecoration: 'none'}}>
                         <ListElement
@@ -50,7 +48,8 @@ class Datatable extends Component {
                             imageLink='http://code.hakaneroztekin.com/eksi-daily/static/images/logo-small.png'
                             imageOpacity='1'
                             primaryText={topic.title}
-                            secondaryText={topic.messageCount + ' entry'}
+                            secondaryText={topic.messageCount + ' entry '
+                            + (topic.changeCount > 0 ? '(' + topic.changeCount + ' yeni)' : '')}
                         />
                     </Link>
                 ))}

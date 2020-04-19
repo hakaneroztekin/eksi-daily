@@ -26,20 +26,20 @@ class MainContent extends Component {
         super(props);
         this.state = {
             topics: null,
+            lastUpdate: null,
         };
     }
 
     componentDidMount() {
-        scrape(100, topics => {
-            console.log("Scrape completed with " + topics.length + " hot topics.");
-            this.setState({topics: topics})
-        });
+        this.updateTopics();
     }
 
     updateTopics() {
         scrape(100, topics => {
-            console.log("Scrape completed with " + topics.length + " hot topics.");
-            this.setState({topics: topics});
+            console.log("Scrape completed with " + topics.data.length + " hot topics.");
+            console.log("topics.data");
+            console.log(topics.data);
+            this.setState({topics: topics.data, lastUpdate: topics.lastUpdate});
             this.forceUpdate();
         });
     }
@@ -62,7 +62,8 @@ class MainContent extends Component {
                 index: i,
                 title: topics[i].title,
                 messageCount: topics[i].messageCount,
-                link: topics[i].link
+                link: topics[i].link,
+                changeCount: topics[i].changeCount
             });
         }
         topicsComponent.push(this.renderDataTable(topicList));
@@ -70,6 +71,8 @@ class MainContent extends Component {
     };
 
     renderDataTable = (topicList) => {
+        console.log("topicList");
+        console.log(topicList);
         return (
             <div>
                 <Link onClick={() => this.updateTopics()} color="secondary" style={{textDecoration: 'none'}}>
@@ -78,7 +81,7 @@ class MainContent extends Component {
                         imageLink='https://cdn.iconscout.com/icon/free/png-256/refresh-1781197-1518571.png'
                         imageOpacity='0.7'
                         primaryText='Yenile'
-                        secondaryText='Son yenileme <tarih>'
+                        secondaryText={'Son yenileme ' + this.state.lastUpdate}
                     />
                 </Link>
                 <Datatable key={'datatable'} list={topicList}/>
