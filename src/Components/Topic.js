@@ -15,7 +15,7 @@ const styles = theme => ({
     },
     circle: {
         backgroundColor: '#fff',
-        border: '1px solid #cdffa0',
+        border: '1px solid #ededed',
         borderRadius: '50%',
     }
 });
