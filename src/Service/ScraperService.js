@@ -34,15 +34,16 @@ function scrapeAllTopics(callback) {
 
 function processList(list, messageLimit) {
     // remove possible duplicates
-    list = Array.from(new Set(list));
+    let uniqueSet = new Set(list.map(e => JSON.stringify(e)));
+    list = Array.from(uniqueSet).map(e => JSON.parse(e));
 
     // sort by entry count
-    list.sort((topic1, topic2) => JSON.parse(topic2).messageCount - JSON.parse(topic1).messageCount);
+    list.sort((topic1, topic2) => topic2.messageCount - topic1.messageCount);
 
     list = list.filter(function (topic) {
-        return JSON.parse(topic).messageCount > messageLimit
+        return topic.messageCount > messageLimit
     });
-
+    console.log(list);
     return list;
 }
 
@@ -72,11 +73,11 @@ function parseLeftFrame(html) {
             $(this).find('small').replaceWith();
         }
 
-        let topic = JSON.stringify({
+        let topic = {
             title: $(this).text().trim(),
             messageCount: messageCount,
             link: BASE_URL + $('a', row).attr('href')
-        });
+        };
 
         topicList.push(topic);
     });
