@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import withStyles from '@material-ui/styles/withStyles';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
-import Topic from "./Topic";
 import {scrape} from "../Service/ScraperService";
 
 const styles = theme => ({
@@ -57,15 +56,19 @@ class MainContent extends Component {
             topic.push(
                 <Grid
                     item
-                    xs={6}
+                    xs={11}
                     key={i}
                 >
-                    <Topic
-                        title={JSON.parse(topics[i]).title}
-                        messageCount={JSON.parse(topics[i]).messageCount}
-                        link={JSON.parse(topics[i]).link}
-                    />
-                </Grid>);
+                    <ul>
+                        <li>
+                            <a href={JSON.parse(topics[i]).link}>
+                                {JSON.parse(topics[i]).title} ({JSON.parse(topics[i]).messageCount})
+                            </a>
+                        </li>
+                    </ul>
+
+                </Grid>
+            );
             topicsComponent.push(topic);
         }
         return topicsComponent;

@@ -3,7 +3,8 @@ import withStyles from '@material-ui/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Avatar from "@material-ui/core/Avatar";
-// import ButtonBar from "../button/ButtonBar";
+
+const logo = require('../Images/logo-small.png');
 
 const styles = theme => ({
     paper: {
@@ -89,7 +90,7 @@ class CardItem extends Component {
                             <img
                                 className={classes.avatarImg}
                                 alt="Logo"
-                                src='/src/Images/logo-small.png'
+                                src='../Images/logo-small.png'
                             />
                         </Avatar>
                     </div>
