@@ -12,7 +12,9 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 
-import MenuBookIcon from '@material-ui/icons/MenuBook';
+import OpacityIcon from '@material-ui/icons/Opacity';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import Link from "@material-ui/core/Link";
 
 const logo = require('../Images/logo-small.png');
 
@@ -121,12 +123,25 @@ export default function ScrollableTabsButtonForce() {
                             <List>
                                 <ListItem>
                                     <ListItemIcon>
-                                        <MenuBookIcon/>
+                                        <OpacityIcon/>
                                     </ListItemIcon>
                                     <ListItemText
-                                        primary="Ekşisözlük'teki popüler yazıları tek tıkla listele"
+                                        primary="Ekşi Sözlük'te anlık en popüler başlıkları oku."
+                                        secondary="Ekşi Daily, 100'den az entry'li başlıkları filtreler"
                                     />
                                 </ListItem>
+                                <Link href="https://github.com/hakaneroztekin/eksi-daily" color="inherit"
+                                      style={{textDecoration: 'none'}}>
+                                    <ListItem>
+                                        <ListItemIcon>
+                                            <GitHubIcon/>
+                                        </ListItemIcon>
+                                        <ListItemText
+                                            primary="Ekşi Daily 100% açık kaynak kodludur"
+                                            secondary="Kaynağı görüntüle"
+                                        />
+                                    </ListItem>
+                                </Link>
                             </List>
                         </div>
                     </Grid>

@@ -3,6 +3,7 @@ import withStyles from '@material-ui/styles/withStyles';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import {scrape} from "../Service/ScraperService";
+import Topic from "./Topic";
 
 const styles = theme => ({
     root: {
@@ -13,7 +14,6 @@ const styles = theme => ({
         paddingBottom: 150
     },
     gridList: {
-        flexWrap: 'nowrap',
         marginBottom: 20
     },
     tileBar: {
@@ -31,14 +31,16 @@ class MainContent extends Component {
 
     componentDidMount() {
         scrape(100, topics => {
-            console.log("Scrape completed with " + topics.length + " total topics.");
+            console.log("Scrape completed with " + topics.length + " hot topics.");
             this.setState({topics: topics})
         });
     }
 
+
     createTopicsComponent = () => {
-        let topicsComponent = [];
-        let topics = this.state.topics;
+        let topicsComponent = []; // the final component version of topics
+        let topics = this.state.topics; // parsed topics
+        let topicList = []; // topics list, which is processed 'topics'
 
         if (topics == null) {
             topicsComponent.push(<Grid
@@ -52,26 +54,19 @@ class MainContent extends Component {
         }
 
         for (let i = 0; i < topics.length; i++) {
-            let topic = [];
-            topic.push(
-                <Grid
-                    item
-                    xs={11}
-                    key={i}
-                >
-                    <ul>
-                        <li>
-                            <a href={JSON.parse(topics[i]).link}>
-                                {JSON.parse(topics[i]).title} ({JSON.parse(topics[i]).messageCount})
-                            </a>
-                        </li>
-                    </ul>
-
-                </Grid>
-            );
-            topicsComponent.push(topic);
+            topicList.push({
+                index: i,
+                title: topics[i].title,
+                messageCount: topics[i].messageCount,
+                link: topics[i].link
+            });
         }
+        topicsComponent.push(this.renderDataTable(topicList));
         return topicsComponent;
+    };
+
+    renderDataTable = (topicList) => {
+        return (<Topic list={topicList}/>)
     };
 
     render() {
@@ -81,15 +76,7 @@ class MainContent extends Component {
             <React.Fragment>
                 <CssBaseline/>
                 <div className={classes.root}>
-                    <Grid
-                        container
-                        direction="row"
-                        justify="space-between"
-                        alignItems="baseline"
-                        spacing={1}
-                    >
-                        {this.createTopicsComponent()}
-                    </Grid>
+                    {this.createTopicsComponent()}
                 </div>
             </React.Fragment>
         );

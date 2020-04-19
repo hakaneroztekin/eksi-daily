@@ -9,7 +9,7 @@ import MainContent from "./Components/MainContent";
 const theme = createMuiTheme({
     palette: {
         secondary: {
-            main: '#ff5733'
+            main: '#7fde2b'
         },
         primary: {
             main: '#75ff33'
