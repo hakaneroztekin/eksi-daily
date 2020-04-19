@@ -20,7 +20,7 @@ const styles = theme => ({
     }
 });
 
-class CardItem extends Component {
+class Datatable extends Component {
     buildMessageContent(messageCount) {
         return messageCount + " entry";
     }
@@ -32,7 +32,7 @@ class CardItem extends Component {
         return (
             <List className={classes.root}>
                 {this.props.list.map(topic => (
-                    <Link href={topic.link} color="secondary" style={{textDecoration: 'none'}}>
+                    <Link key={topic.index} href={topic.link} color="secondary" style={{textDecoration: 'none'}}>
                         <ListItem style={{border: '10px'}}>
                             <ListItemAvatar>
                                 <Avatar alt="Eksi"
@@ -49,4 +49,4 @@ class CardItem extends Component {
     }
 }
 
-export default withStyles(styles)(CardItem);
+export default withStyles(styles)(Datatable);

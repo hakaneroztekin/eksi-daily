@@ -3,7 +3,7 @@ import withStyles from '@material-ui/styles/withStyles';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import {scrape} from "../Service/ScraperService";
-import Topic from "./Topic";
+import Datatable from "./Datatable";
 
 const styles = theme => ({
     root: {
@@ -66,7 +66,7 @@ class MainContent extends Component {
     };
 
     renderDataTable = (topicList) => {
-        return (<Topic list={topicList}/>)
+        return (<Datatable key={'datatable'} list={topicList}/>)
     };
 
     render() {
