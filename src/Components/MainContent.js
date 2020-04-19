@@ -42,7 +42,7 @@ class MainContent extends Component {
 
         if (topics == null) {
             topicsComponent.push(
-                <LinearProgress color="secondary" style={{opacity: 0.4}}/>
+                <LinearProgress key="linearProgress" color="secondary" style={{opacity: 0.4}}/>
             );
             return topicsComponent;
         }
@@ -70,6 +70,7 @@ class MainContent extends Component {
             <React.Fragment>
                 <CssBaseline/>
                 <div className={classes.root}>
+
                     {this.createTopicsComponent()}
                 </div>
             </React.Fragment>
