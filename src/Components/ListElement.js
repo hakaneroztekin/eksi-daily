@@ -22,7 +22,8 @@ class Datatable extends Component {
         this.state = {
             primaryText: null,
             secondaryText: null,
-            imageLink: null
+            imageLink: null,
+            imageOpacity: null
         };
     }
 
@@ -30,19 +31,29 @@ class Datatable extends Component {
         this.setState({
             primaryText: this.props.primaryText,
             secondaryText: this.props.secondaryText,
-            imageLink: this.props.imageLink
+            imageLink: this.props.imageLink,
+            imageOpacity: this.props.imageOpacity
+        })
+    }
+
+    componentWillReceiveProps(nextProps, nextContext) {
+        this.setState({
+            primaryText: nextProps.primaryText,
+            secondaryText: nextProps.secondaryText,
+            imageLink: nextProps.imageLink,
+            imageOpacity: nextProps.imageOpacity
         })
     }
 
     render() {
         const {classes} = this.props;
-        const preventDefault = (event) => event.preventDefault();
 
         return (
             <ListItem style={{border: '10px'}}>
                 <ListItemAvatar>
                     <Avatar className={classes.circle}
-                            src={this.state.imageLink}/>
+                            src={this.state.imageLink}
+                            style={{opacity: this.state.imageOpacity}}/>
                 </ListItemAvatar>
                 <ListItemText primary={this.state.primaryText}
                               secondary={this.state.secondaryText}/>

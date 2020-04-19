@@ -16,21 +16,39 @@ const styles = theme => ({
 });
 
 class Datatable extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            list: null,
+        };
+    }
+
+    componentDidMount() {
+        this.setState({list: this.props.list});
+    }
+
     buildMessageContent(messageCount) {
         return messageCount + " entry";
     }
 
+    componentWillReceiveProps(nextProps, nextContext) {
+        this.setState({list: nextProps.list});
+        this.forceUpdate();
+    }
+
     render() {
         const {classes} = this.props;
-        const preventDefault = (event) => event.preventDefault();
 
         return (
             <List className={classes.root}>
+                {console.log("this.state.list")}
+                {console.log(this.state.list)}
                 {this.props.list.map(topic => (
                     <Link key={topic.index} href={topic.link} color="secondary" style={{textDecoration: 'none'}}>
                         <ListElement
                             key={'listElement' + topic.index}
                             imageLink='http://code.hakaneroztekin.com/eksi-daily/static/images/logo-small.png'
+                            imageOpacity='1'
                             primaryText={topic.title}
                             secondaryText={topic.messageCount + ' entry'}
                         />

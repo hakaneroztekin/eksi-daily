@@ -4,6 +4,8 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import {scrape} from "../Service/ScraperService";
 import Datatable from "./Datatable";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import ListElement from "./ListElement";
+import Link from "@material-ui/core/Link";
 
 const styles = theme => ({
     root: {
@@ -34,6 +36,14 @@ class MainContent extends Component {
         });
     }
 
+    updateTopics() {
+        scrape(100, topics => {
+            console.log("Scrape completed with " + topics.length + " hot topics.");
+            this.setState({topics: topics});
+            this.forceUpdate();
+        });
+    }
+
 
     createTopicsComponent = () => {
         let topicsComponent = []; // the final component version of topics
@@ -60,7 +70,20 @@ class MainContent extends Component {
     };
 
     renderDataTable = (topicList) => {
-        return (<Datatable key={'datatable'} list={topicList}/>)
+        return (
+            <div>
+                <Link onClick={() => this.updateTopics()} color="secondary" style={{textDecoration: 'none'}}>
+                    <ListElement
+                        key={'listElement'}
+                        imageLink='https://cdn.iconscout.com/icon/free/png-256/refresh-1781197-1518571.png'
+                        imageOpacity='0.7'
+                        primaryText='Yenile'
+                        secondaryText='Son yenileme <tarih>'
+                    />
+                </Link>
+                <Datatable key={'datatable'} list={topicList}/>
+            </div>
+        )
     };
 
     render() {
@@ -70,7 +93,6 @@ class MainContent extends Component {
             <React.Fragment>
                 <CssBaseline/>
                 <div className={classes.root}>
-
                     {this.createTopicsComponent()}
                 </div>
             </React.Fragment>
