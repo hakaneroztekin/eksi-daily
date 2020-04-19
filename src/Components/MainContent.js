@@ -75,7 +75,7 @@ class MainContent extends Component {
         console.log(topicList);
         return (
             <div>
-                <Link onClick={() => this.updateTopics()} color="secondary" style={{textDecoration: 'none'}}>
+                <Link onClick={() => this.updateTopics()} color="#2d1f97" style={{textDecoration: 'none'}}>
                     <ListElement
                         key={'listElement'}
                         imageLink='https://cdn.iconscout.com/icon/free/png-256/refresh-1781197-1518571.png'
