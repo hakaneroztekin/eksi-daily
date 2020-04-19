@@ -7,8 +7,6 @@ import Avatar from '@material-ui/core/Avatar';
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Link from "@material-ui/core/Link";
 
-const logo = require('../Images/logo-small.png');
-
 const styles = theme => ({
     root: {
         width: '100%',
