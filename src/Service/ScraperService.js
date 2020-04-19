@@ -1,8 +1,10 @@
 const requestPromise = require('request-promise');
 const cheerio = require('cheerio');
 
-const BASE_URL = "https://cors-anywhere.herokuapp.com/https://eksisozluk.com";
-const HOT_TOPICS_URL = "https://cors-anywhere.herokuapp.com/https://eksisozluk.com/basliklar/gundem";
+const BASE_URL = "https://eksisozluk.com";
+
+// Use Cloudflare Worker as a CORS Proxy to overcome CORS prevention
+const HOT_TOPICS_URL = "https://crimson-fog-8f07.hakaneroztekin.workers.dev/";
 
 export function scrape(messageLimit, callback) {
     scrapeAllTopics(allTopics => {
