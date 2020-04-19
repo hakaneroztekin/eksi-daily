@@ -1,16 +1,14 @@
 import React, {Component} from 'react';
 import withStyles from '@material-ui/styles/withStyles';
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Grid from "@material-ui/core/Grid";
 import {scrape} from "../Service/ScraperService";
 import Datatable from "./Datatable";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 const styles = theme => ({
     root: {
         flexGrow: 1,
         overflow: 'hidden',
-        marginTop: 20,
-        padding: 20,
         paddingBottom: 150
     },
     gridList: {
@@ -43,13 +41,9 @@ class MainContent extends Component {
         let topicList = []; // topics list, which is processed 'topics'
 
         if (topics == null) {
-            topicsComponent.push(<Grid
-                item
-                xs={6}
-                key="empty"
-            >
-                Veriler toplanıyor...
-            </Grid>);
+            topicsComponent.push(
+                <LinearProgress color="secondary" style={{opacity: 0.4}}/>
+            );
             return topicsComponent;
         }
 
