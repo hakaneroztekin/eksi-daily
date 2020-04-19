@@ -106,7 +106,6 @@ export default function ScrollableTabsButtonForce() {
                     scrollButtons="on"
                     indicatorColor="primary"
                     textColor="primary"
-                    aria-label="scrollable force tabs example"
                 >
                     <Tab
                         icon={<img alt="Logo" width={50} src={logo}/>}
