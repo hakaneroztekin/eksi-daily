@@ -30,6 +30,7 @@ class Datatable extends Component {
                     <Link key={topic.index} href={topic.link} color="secondary" style={{textDecoration: 'none'}}>
                         <ListElement
                             key={'listElement' + topic.index}
+                            imageLink='http://code.hakaneroztekin.com/eksi-daily/static/images/logo-small.png'
                             primaryText={topic.title}
                             secondaryText={topic.messageCount + ' entry'}
                         />

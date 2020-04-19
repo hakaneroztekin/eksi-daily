@@ -21,14 +21,16 @@ class Datatable extends Component {
         super(props);
         this.state = {
             primaryText: null,
-            secondaryText: null
+            secondaryText: null,
+            imageLink: null
         };
     }
 
     componentDidMount() {
         this.setState({
             primaryText: this.props.primaryText,
-            secondaryText: this.props.secondaryText
+            secondaryText: this.props.secondaryText,
+            imageLink: this.props.imageLink
         })
     }
 
@@ -39,9 +41,8 @@ class Datatable extends Component {
         return (
             <ListItem style={{border: '10px'}}>
                 <ListItemAvatar>
-                    <Avatar alt="Eksi"
-                            className={classes.circle}
-                            src="http://code.hakaneroztekin.com/eksi-daily/static/images/logo-small.png"/>
+                    <Avatar className={classes.circle}
+                            src={this.state.imageLink}/>
                 </ListItemAvatar>
                 <ListItemText primary={this.state.primaryText}
                               secondary={this.state.secondaryText}/>
