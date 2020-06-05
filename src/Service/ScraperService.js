@@ -71,6 +71,14 @@ function processList(list, messageLimit) {
     console.log("List after adding changes");
     console.log(list);
 
+    // process thousand abbreviation so 1,8b becomes 1800
+    list.filter(item => item.messageCount.includes('b'))
+        .forEach(item => {
+            item.messageCount = item.messageCount
+                .replace('b', '00')
+                .replace(',', '');
+        });
+
     // sort by entry count
     list.sort((topic1, topic2) => topic2.messageCount - topic1.messageCount);
 
